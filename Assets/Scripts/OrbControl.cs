@@ -6,10 +6,12 @@ public class OrbControl : MonoBehaviour
 {
     Rigidbody rb;
     float MoveSpeed = 10f;
-    float Jump = 5f;
+    float Jump = 8f;
     bool puedeSaltar = true;
+    bool gravity = true;
     public GameObject GameOver;
-    
+    public Transform Camera;
+    public AudioSource BG;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,16 @@ public class OrbControl : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, Jump, rb.velocity.z);
             puedeSaltar = false;
         }
+        if (Input.GetKeyDown("g") && gravity)
+        {
+            rb.useGravity = false;
+            gravity = false;
+        }
+        else if (Input.GetKeyDown("g") && gravity == false)
+        {
+            rb.useGravity = true;
+            gravity = true;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,6 +55,8 @@ public class OrbControl : MonoBehaviour
         {    
             GameOver.SetActive(true);
             Time.timeScale = 0f;
+            BG.Stop();
+            //Cursor.lockState = CursorLockMode.None;
         }
     }
 

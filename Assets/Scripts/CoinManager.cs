@@ -11,6 +11,7 @@ public class CoinManager : MonoBehaviour
     public float time = 0;
     public GameObject panel;
     public GameObject UI;
+    public AudioSource BG;
     public int currentCoins = 0;
 
     // Start is called before the first frame update
@@ -32,12 +33,14 @@ public class CoinManager : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        if (currentCoins == 2)
+        if (currentCoins == 8)
         {
+            //Cursor.lockState = CursorLockMode.None;
             panel.SetActive(true);
             UI.SetActive(false);
             finalTimeText.text = "Conseguiste todas las monedas en " + ((int)time).ToString() + " segundos";
             Time.timeScale = 0f;
+            BG.Stop();
         }
     }
     

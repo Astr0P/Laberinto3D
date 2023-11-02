@@ -5,7 +5,7 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public int value = 1;
-    //AudioSource FX;
+    public AudioSource FX;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class Coin : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            //FX.Play();
+            FX.Play();
             Destroy(gameObject);
             CoinManager.instance.IncreaseCoins(value);
         }
